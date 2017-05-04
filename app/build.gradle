@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion '25.0.0'
+    defaultConfig {
+        applicationId "cn.itcast.takeout"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+repositories{
+    flatDir{
+        dirs 'libs' //就是你放aar的目录地址
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:24.1.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.picasso:picasso:2.3.2'
+    // picasso异步加载图片
+    compile 'com.nineoldandroids:library:2.4.0'
+    //兼容低版本动画
+    compile 'com.daimajia.slider:library:1.1.5@aar'
+    //包含轮播图自动轮训的自定义控件
+    compile 'com.flipboard:bottomsheet-commons:1.5.1'
+    //底部弹出窗体
+    compile 'com.flipboard:bottomsheet-core:1.5.1'
+    compile 'se.emilsjolander:stickylistheaders:2.7.0'
+    //logeer
+    compile 'com.orhanobut:logger:1.15'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    //Toast
+    compile 'com.github.GrenderG:Toasty:1.2.3'
+    //ShareSDK
+    compile name: 'SMSSDK-2.1.4', ext: 'aar'
+    compile name: 'SMSSDKGUI-2.1.4', ext: 'aar'
+    compile files('libs/MobCommons-2017.0321.1624.jar')
+    compile files('libs/MobTools-2017.0321.1624.jar')
+    //ormlite
+    compile 'com.j256.ormlite:ormlite-android:5.0'
+}
